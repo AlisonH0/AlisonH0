@@ -34,8 +34,10 @@
 */
 
 // Define base and accent colors 
-$base-color: #800000;
-$base-color-hover: darken($base-color, 10%);
+$base-color: #3498db;
+$base-color-hover: #217dbb;
+$lead-accent: #a0cfee;
+$lead-overlay: rgba(11, 11, 69, 0.8);
 
 // Define background colors
 $background: #fff;
@@ -47,6 +49,10 @@ $border: #dcd9d9;
 // Define text colors
 $heading: #374054;
 $text: #74808a;
+
+:root {
+    --base-color: #{$base-color};
+}
 
 /*
     ---------------------
@@ -168,7 +174,7 @@ header {
 
     a {
         display: block;
-        color: $base-color;
+        color: var(--base-color);
         padding: 10px;
 
         &:hover {
@@ -179,7 +185,7 @@ header {
         }
 
         &:focus {
-            color: $base-color;
+            color: var(--base-color);
             text-decoration: none;
         }
     }
@@ -206,7 +212,7 @@ header {
     position: fixed;
     right: 15px;
     top: 10px;
-    color: $base-color;
+    color: var(--base-color);
     font-size: 1.5em;
     z-index: 20;
     padding: 0 7px;
@@ -223,7 +229,7 @@ header {
     padding-right: 15px;
     padding-top: 10px;
     cursor: pointer;
-    color: $base-color;
+    color: var(--base-color);
 
     span {
         font-size: 0.5em;
@@ -258,7 +264,7 @@ footer {
         width: 35px;
         height: 35px;
         border-radius: 50%;
-        border: 3px solid lighten($text, 25%);
+        border: 3px solid #b9bfc4;
         text-align:center;
     }
 
@@ -287,7 +293,7 @@ footer {
         padding: 10px;
 
         &:hover {
-            color: $base-color;
+            color: var(--base-color);
         }
     }
 }
@@ -301,7 +307,7 @@ footer {
     @include transition();
 
     &:hover {
-        color: $base-color;
+        color: var(--base-color);
         background: #fff;
         text-decoration: none;
     }
@@ -331,7 +337,7 @@ footer {
         left: 0;
         right: 0;
         margin: 0 auto;
-        background: $base-color;
+        background: var(--base-color);
     }
 }
 
@@ -378,7 +384,7 @@ footer {
     }
 
     h2 {
-        color: lighten($base-color, 25%);
+        color: $lead-accent;
         font-weight: 500;
         font-size: 2.25em;
         margin-bottom: 15px;
@@ -393,7 +399,7 @@ footer {
     right: 0;
     bottom: 0;
     left: 0;
-    background: rgba($base-color-hover, 0.8);
+    background: $lead-overlay;
     z-index: 1;
 }
 
@@ -414,7 +420,7 @@ footer {
         width: 35px;
         height: 35px;
         border-radius: 50%;
-        border: 3px solid lighten($base-color, 25%);
+        border: 3px solid $lead-accent;
         text-align:center;
     }
 
@@ -489,7 +495,7 @@ footer {
         right: auto;
         height: 100%;
         width: 3px;
-        background: $base-color;
+        background: var(--base-color);
         z-index: 0;
     }
 
@@ -498,8 +504,8 @@ footer {
         content: '';
         width: 3px;
         height: 40px;
-        background: $base-color;
-        background: linear-gradient(to bottom, $base-color, rgba($base-color, 0));
+        background: var(--base-color);
+        background: linear-gradient(to bottom, var(--base-color), rgba($base-color, 0));
         top: 100%;
         left: 303px;
     }
@@ -547,7 +553,7 @@ footer {
     color: #fff;
     width: 50px;
     height: 50px;
-    background: $base-color;
+    background: var(--base-color);
     border-radius: 50%;
     float: left;
     z-index: 99;
@@ -642,24 +648,27 @@ footer {
 }
 
 .project {
-    position: relative;
+    display: flex;
+    align-items: center;
     max-width: 900px;
     margin: 0 auto 30px auto;
-    overflow: hidden;
     background: #fff;
     border-radius: 4px;
+    overflow: hidden;
+    gap: 20px;
 }
 
 .project-image {
-    float: left;
+    img {
+        width: 300px;
+        height: auto;
+        display: block;
+    }
 }
 
 .project-info {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    margin-left: 300px;
-    padding: 15px;
+    padding: 25px;
+    text-align: left;
 
     h3 {
         font-size: 1.5em;
@@ -681,6 +690,16 @@ footer {
         margin: 0;
         padding: 30px 15px;
         transform: none;
+    }
+}
+
+@media (max-width: 768px) {
+    .project {
+        flex-direction: column;
+    }
+
+    .project-image img {
+        width: 100%;
     }
 }
 
@@ -715,7 +734,7 @@ footer {
         margin: 7px;
         padding: 5px 10px;
         color: $heading;
-        background: darken($background-alt, 5%);
+        background: #e4e4ea;
         list-style: none;
         cursor: default;
         font-size: 1.2em;
@@ -730,7 +749,7 @@ footer {
 
 #contact {
     padding: 50px 15px;
-    background: $base-color;
+    background: var(--base-color);
     text-align: center;
 
     h2 {
@@ -751,7 +770,7 @@ footer {
         border-radius: 4px;
         border: none;
         margin-bottom: 10px;
-        background: darken($base-color, 15%);
+        background: #1d6fa5;
         color: #fff;
         @include transition();
         @include placeholder {
@@ -760,7 +779,7 @@ footer {
 
         &:focus {
             outline: none;
-            background: darken($base-color, 25%);
+            background: #16527a;
         }
     }
 
@@ -776,7 +795,7 @@ footer {
         border-radius: 4px;
         padding: 5px 10px;
         border: none;
-        color: $base-color;
+        color: var(--base-color);
         font-weight: 700;
         box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
         @include transition();
